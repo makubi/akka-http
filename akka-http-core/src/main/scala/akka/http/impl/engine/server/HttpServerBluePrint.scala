@@ -430,7 +430,7 @@ private[http] object HttpServerBluePrint {
               // the application has forwarded a request entity stream error to the response stream
               finishWithIllegalRequestError(StatusCodes.BadRequest, errorInfo)
 
-            case EntityStreamSizeException(limit, contentLength) ⇒
+            case EntityStreamSizeException(limit, contentLength, _) ⇒
               val summary = contentLength match {
                 case Some(cl) ⇒ s"Request Content-Length of $cl bytes exceeds the configured limit of $limit bytes"
                 case None     ⇒ s"Aggregated data length of request entity exceeds the configured limit of $limit bytes"
